@@ -10,51 +10,57 @@ body {
   background-color: hsl(210, 46%, 95%);
 }
 
-.container {
-  width: 70vw;
-  margin: 20vh auto;
-}
+/* GRID STYLING */
 
 .grid {
   display: grid;
-  justify-items: start;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 25px;
+  width: 70vw;
+  margin: 20vh auto;
+  /* grid-template-columns: repeat(4, 1fr); */
+  grid-template-areas:
+    "one one two five"
+    "three four four five";
+  gap: 1.5rem;
 }
 
 .cell {
   padding: 25px;
   border-radius: 5px;
 }
+
 .cell-1 {
   background-repeat: no-repeat;
   background-image: url("images/bg-pattern-quotation.svg");
   background-position-x: 80%;
   background-color: hsl(263, 55%, 52%);
-  grid-column: 1 / 3;
-  align-self: start;
+  /* grid-column: 1 / span 2; */
 }
 .cell-2 {
   background-color: hsl(217, 19%, 35%);
-  align-self: start;
 }
 .cell-3 {
   background-color: hsl(0, 0%, 100%);
 }
 .cell-4 {
   background-color: hsl(219, 29%, 14%);
-  grid-column: 2 / 4;
+  /* grid-column: span 2; */
 }
 .cell-5 {
   background-color: hsl(0, 0%, 100%);
-  grid-row: 1 / 3;
-  grid-column: 4;
+  /* grid-row: 1 / span 2;
+  grid-column: 4; */
 }
-.cell-3 .heading,
-.cell-5 .heading {
+.cell-3,
+.cell-5 {
   color: hsl(217, 19%, 50%);
 }
+
+.cell-3 .name,
+.cell-5 .name {
+  color: hsl(217, 19%, 50%);
+}
+
+/* ARTICLE */
 
 .flex {
   display: flex;
@@ -67,6 +73,7 @@ body {
 img {
   width: 30px;
   height: 30px;
+  max-width: 100%;
   border-radius: 50%;
 }
 
@@ -88,24 +95,50 @@ img {
 }
 
 .name {
-  color: hsl(0, 0%, 50%);
+  color: hsl(0, 0%, 100%);
   font-size: 15px;
   font-weight: 600;
 }
 .profession {
-  color: hsl(0, 0%, 50%);
+  color: hsl(0, 0%, 70%);
   font-size: 13px;
   font-weight: 300;
 }
 
-@media all and (max-width: 375px) {
-  .container {
-    width: 90vw;
-    height: 80vw;
-  }
+article:nth-child(1) {
+  grid-area: one;
+}
+article:nth-child(2) {
+  grid-area: two;
+}
+article:nth-child(3) {
+  grid-area: three;
+}
+article:nth-child(4) {
+  grid-area: four;
+}
+article:nth-child(5) {
+  grid-area: five;
+}
+/* MEDIA QUERIES */
+
+@media all and (max-width: 1080px) {
   .grid {
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
+    grid-template-areas:
+      "one one one one"
+      "two two three three"
+      "four four four four"
+      "five five five five";
+  }
+}
+
+@media all and (max-width: 680px) {
+  .grid {
+    grid-template-areas:
+      "one"
+      "two"
+      "three"
+      "four"
+      "five";
   }
 }
